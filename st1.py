@@ -1,4 +1,6 @@
+# 文本匹配，并返回文本所在行的前N行
 from collections import deque
+
 
 def search(lines,pattern,history=5):
     previous_line=deque(maxlen=2)
