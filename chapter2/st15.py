@@ -24,3 +24,9 @@ class safesub(dict):
 print(s.format_map(safesub(vars())))
 # 假设没有n变量
 # 理想输出：'Guido has {n} messages.'
+
+import sys
+
+def sub(text):
+    return text.format_map(safesub(sys._getframe(1).f_locals))
+print(sub('Hello {name}, my favorite color is {color}'))
