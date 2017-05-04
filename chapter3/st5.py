@@ -1,0 +1,3 @@
+# 字节到大整数的打包与解包
+data = b'\x00\x124V\x00x\x90\xab\x00\xcd\xef\x01\x00#\x004'
+print(len(data))
