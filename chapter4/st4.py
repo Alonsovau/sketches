@@ -85,4 +85,3 @@ if __name__ == '__main__':
     child2.add_child(Node(5))
     for ch in root.depth_first():
         print(ch)
-
