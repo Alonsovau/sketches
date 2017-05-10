@@ -1,4 +1,7 @@
 # 实现迭代器协议,构建一个能支持迭代操作的自定义对象,并希望找到一个能实现迭代的简单方法
+from collections import Iterable,Iterator
+
+
 class Node:
     def __init__(self, value):
         self._value = value
@@ -75,13 +78,12 @@ if __name__ == '__main__':
     for ch in root.depth_first():
         print(ch)
 
-    root = Node2(0)
-    child1 = Node2(1)
-    child2 = Node2(2)
-    root.add_child(child1)
-    root.add_child(child2)
-    child1.add_child(Node(3))
-    child1.add_child(Node(4))
-    child2.add_child(Node(5))
-    for ch in root.depth_first():
-        print(ch)
+    # root = Node2(0)
+    # child1 = Node2(1)
+    # child2 = Node2(2)
+    # root.add_child(child1)
+    # root.add_child(child2)
+    # child1.add_child(Node2(3))
+    # child1.add_child(Node2(4))
+    # child2.add_child(Node2(5))
+    # print(root.depth_first().__next__().depth_first().__next__())
