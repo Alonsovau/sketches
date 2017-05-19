@@ -13,3 +13,13 @@ exefiles = [name for name in os.listdir('c:/')
            if name.endswith('.exe')]
 print(exefiles)
 import glob
+exefiles1 = glob.glob('c:/*.exe')
+print(exefiles1)
+from fnmatch import fnmatch
+exefiles2 = [name for name in os.listdir('c:/')
+             if fnmatch(name, '*.exe')]
+print(exefiles2)
+
+file_metadata = [(name, os.stat(name)) for name in exefiles1]
+for name, meta in file_metadata:
+    print(name, meta.st_size, meta.st_mtime)
