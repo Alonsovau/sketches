@@ -8,7 +8,7 @@ def loop():
 
 
 print('thread {} is running....'.format(threading.current_thread().name))
-t = threading.Thread(target=loop(), name='LoopThread')
+t = threading.Thread(target=loop, name='LoopThread')
 t.start()
 t.join()
 print('thread {} ended....'.format(threading.current_thread().name))
