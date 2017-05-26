@@ -4,6 +4,7 @@ import struct, itertools
 
 def write_polys(filename, polys):
     flattened = list(itertools.chain(*polys))
+    print(flattened)
     min_x = min(x for x, y in flattened)
     max_x = max(x for x, y in flattened)
     min_y = min(y for x, y in flattened)
@@ -22,10 +23,12 @@ def read_polys(filename):
         file_code, min_x, min_y, max_x, max_y, num_polys = struct.unpack('<iddddi', header)
         polys = []
         for n in range(num_polys):
-            pbytes, =struct.unpack('<i', f.read(4))
+            pbytes, = struct.unpack('<i', f.read(4))
+            # print(pbytes)
             poly = []
             for m in range(pbytes // 16):
                 pt = struct.unpack('<dd', f.read(16))
+                # print(pt)
                 poly.append(pt)
             polys.append(poly)
     return polys
