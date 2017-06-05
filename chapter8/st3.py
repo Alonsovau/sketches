@@ -32,3 +32,28 @@ with conn as s:
     s.send(b'\r\n')
     resp = b''.join(iter(partial(s.recv, 8192), b''))
     print(resp)
+
+
+class LazyConnection2:
+    def __init__(self, address, family=AF_INET, type=SOCK_STREAM):
+        self.address = address
+        self.family = family
+        self.type = type
+        self.connections = []
+
+    def __enter__(self):
+        sock = socket(self.family, self.type)
+        sock.connect(self.address)
+        self.connections.append(sock)
+        return sock
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.connections.pop().close()
+
+
+conn = LazyConnection2(('www.python.org', 80))
+with conn as s1:
+    pass
+    with conn as s2:
+        pass
+# 能够允许多个with语句嵌套使用连接
