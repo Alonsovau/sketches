@@ -89,7 +89,8 @@ class Structure: # Class variable that specifies expected
             raise TypeError('Expected {} arguments'.format(len(self._fields)))
 # Set the arguments (alternate)
         self.__dict__.update(zip(self._fields,args))
-# 尽管这也可以正常工作，但是当定义子类的时候问题就来了。当一个子类定义了 slots 或者通过 property(或描述器) 来包装某个属性，那么直接访问实例字典就不 起作用了。我们上面使用 setattr() 会显得更通用些，因为它也适用于子类情况。 这种方法唯一不好的地方就是对某些 IDE 而已，在显示帮助函数时可能不太友好。
+# 尽管这也可以正常工作，但是当定义子类的时候问题就来了。当一个子类定义了 slots 或者通过 property(或描述器) 来包装某个属性，那么直接访问实例字典就不 起作用了。
+# 我们上面使用 setattr() 会显得更通用些，因为它也适用于子类情况。 这种方法唯一不好的地方就是对某些 IDE 而已，在显示帮助函数时可能不太友好。
 
 
 
