@@ -70,6 +70,7 @@ class UnsignedInteger(Integer):
 class Float(Descriptor):
     pass
 
+
 @Unsigned
 class UnsignedFloat(Float):
     pass
