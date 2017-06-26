@@ -9,7 +9,7 @@ class Typed:
         self._name = name
 
     def __set__(self, instance, value):
-        if not instance(value, self._expected_type):
+        if not isinstance(value, self._expected_type):
             raise TypeError('Expected ' + str(self._expected_type))
         instance.__dict__[self._name] = value
 
@@ -26,7 +26,7 @@ class String(Typed):
     _expected_type = str
 
 
-class OrderedMeta(Typed):
+class OrderedMeta(type):
     def __new__(cls, clsname, bases, clsdict):
         d = dict(clsdict)
         order = []
@@ -60,4 +60,35 @@ class Stock(Structure):
 
 s = Stock('GOOD', 100, 490.1)
 print(s.name)
+print(s.as_csv())
+# t = Stock('AAPL', 'a lot', 610.23)
 
+
+class NoDupOrderDict(OrderedDict):
+    def __init__(self, clsname):
+        self.clsname = clsname
+        super().__init__()
+
+    def __setitem__(self, name, value):
+        if name in  self:
+            raise TypeError('{} already define in {}'.format(name, self.clsname))
+        super().__setitem__(name, value)
+
+
+class OrderedMeta(type):
+    def __new__(cls, clsname, bases, clsdict):
+        d = dict(clsdict)
+        d['_order'] = [name for name in clsdict if name[0] != '_']
+        return type.__new__(cls, clsname, bases, d)
+
+    @classmethod
+    def __prepare__(cls, clsname, bases):
+        return NoDupOrderDict(clsname)
+
+
+class A(metaclass=OrderedMeta):
+    def spam(self):
+        pass
+
+    def spam(self):
+        pass
