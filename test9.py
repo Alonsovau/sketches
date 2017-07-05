@@ -9,17 +9,19 @@ def write(result):
     with open('result.txt', 'w') as f:
         for key, value in result.items():
             f.write(key+'\n')
-            value = sorted(zip(value.values(), value.keys()))
-            f.write(lambda t : value[:])
+            value = sorted(zip(value.values(), value.keys()),reverse=True)
+            for t in value:
+                f.write('\t' + str(t[0]).ljust(10, '-') + t[1] + '\n')
 
 
 def indate(start_date, end_date, date):
     if start_date == '':
         return True
     if end_date == '':
-        end_date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+        end_date = time.strftime('%Y%m%d',time.localtime(time.time()))
     if len(start_date) != 8 or len(end_date) != 8:
         raise TypeError('date format:20170707')
+    date = ''.join(date.split('-'))
     if start_date <= date <= end_date:
         return True
     return False
