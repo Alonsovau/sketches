@@ -1,6 +1,7 @@
 # 利用函数注解实现方法重载
 import inspect
 import types
+import time
 
 
 class Spam:
@@ -75,4 +76,31 @@ class MultipleMeta(type):
         return MultiDict()
 
 
-class Spam(metaclass=MultipleMeta)
+class Spam2(metaclass=MultipleMeta):
+    def bar(self, x: int, y: int):
+        print('Bar 1:', x, y)
+
+    def bar(self, s: str, n: int = 0):
+        print('Bar 2:', s, n)
+
+
+class Date(metaclass=MultipleMeta):
+    def __init__(self, year: int, month: int, day: int):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def __init__(self):
+        t = time.localtime()
+        self.__init__(t.tm_year, t.tm_mon, t.tm_mday)
+
+
+s = Spam2()
+s.bar(2, 3)
+s.bar('hello')
+s.bar('hello', 6)
+# s.bar(2, 'hello')
+d = Date(2012, 12, 21)
+print(d.year, d.month, d.day)
+e = Date()
+print(e.year, e.month, e.day)
