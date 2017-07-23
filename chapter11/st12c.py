@@ -81,7 +81,7 @@ class UDPFibServer(UDPServer):
     def handle_receive(self):
         msg, addr = self.sock.recvfrom(128)
         n = int(msg)
-        self.pool.run(fib, (n,), callback=lambda r:self.respond(r, addr))
+        pool.run(fib, (n,), callback=lambda r:self.respond(r, addr))
 
     def respond(self, result, addr):
         self.sock.sendto(str(result).encode('ascii'), addr)
