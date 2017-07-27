@@ -1,5 +1,5 @@
 # 判断线程是否已经启动
-from threading import Thread, Event, Condition
+from threading import Thread, Event, Condition, Semaphore
 import time
 
 
@@ -57,7 +57,7 @@ def countdown2(nticks):
 
 def countup(last):
     n = 0
-    while n <last:
+    while n < last:
         ptimer.wait_for_tick()
         print('counting', n)
         n += 1
@@ -65,3 +65,17 @@ def countup(last):
 
 Thread(target=countdown2, args=(10,)).start()
 Thread(target=countup, args=(5,)).start()
+
+
+def worker(n, sema):
+    sema.acquire()
+    print('working', n)
+
+
+sema = Semaphore(0)
+nworkers = 10
+for n in range(nworkers):
+    t = Thread(target=worker, args=(n, sema,))
+    t.start()
+sema.release()
+sema.release()
