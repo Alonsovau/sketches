@@ -1,3 +1,5 @@
+# 防止忘记detach，使用上下文管理器协议
+from contextlib import contextmanager
 from collections import defaultdict
 
 
@@ -10,6 +12,16 @@ class Exchange:
 
     def detach(self, task):
         self._subscribes.remove(task)
+
+    @contextmanager
+    def subscribe(self, *tasks):
+        for task in tasks:
+            self.attach(task)
+        try:
+            yield
+        finally:
+            for task in tasks:
+                self.detach(task)
 
     def send(self, msg):
         for subscribe in self._subscribes:
@@ -33,24 +45,6 @@ task_b = Task()
 
 
 exc = get_exchange('name')
-exc.attach(task_a)
-exc.attach(task_b)
-exc.send('msg1')
-exc.send('msg2')
-exc.detach(task_a)
-exc.detach(task_b)
-
-
-class DisplayMessages:
-    def __init__(self):
-        self.count = 0
-
-    def send(self, msg):
-        self.count += 1
-        print('msg[{}]: {!r}'.format(self.count, msg))
-
-
-exc = get_exchange('name')
-d = DisplayMessages()
-exc.attach(d)
-exc.send('jkl')
+with exc.subscribe(task_b, task_b):
+    exc.send('msg1')
+    exc.send('msg2')
