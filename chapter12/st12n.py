@@ -150,7 +150,7 @@ if __name__ == '__main__':
                     line = line[nsent:]
             client.close()
 
-        sched = Scheduler()
-        EchoServer(('', 16000), sched)
-        sched.run()
+    sched = Scheduler()
+    EchoServer(('', 16000), sched)
+    sched.run()
 
