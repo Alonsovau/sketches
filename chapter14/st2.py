@@ -1,5 +1,6 @@
 # 在单元测试中给对象打补丁
 from unittest.mock import patch
+from unittest.mock import MagicMock
 
 
 # @patch('example.func')
@@ -28,3 +29,22 @@ with patch('__main__.x', 'patched_value'):
     print(x)
     print(type(x))
 print(x)
+
+
+m = MagicMock(return_value=10)
+temp = m(1, 2, debug=True)
+print(temp)
+m.assert_called_with(1, 2, debug=True)
+# m.assert_called_with(1, 2)
+m.upper.return_value = 'HELLO'
+print(m.upper('hello'))
+assert m.upper.called
+
+m.split.return_value = ['hello', 'world']
+m.split('hello world')
+m.split.assert_called_with('hello world')
+
+
+m['blah']
+print(m.__getitem__.called)
+m.__getitem__.assergt_called_with('blah')
