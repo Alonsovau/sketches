@@ -27,3 +27,4 @@ class Tests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+# mac下使用python3 st5.py -v 运行
