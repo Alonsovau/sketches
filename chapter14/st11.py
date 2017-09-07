@@ -7,3 +7,8 @@ def func(x, y, logfile=None, debug=False):
         warnings.warn('logfile argument deprecated', DeprecationWarning)
 # python3 -W all st11.py
 # python3 -W error st11.py
+
+
+warnings.simplefilter('always')
+f = open('testing.out')
+del f
