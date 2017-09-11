@@ -1555,7 +1555,6 @@ static const char __pyx_k_quot[] = "quot";
 static const char __pyx_k_size[] = "size";
 static const char __pyx_k_step[] = "step";
 static const char __pyx_k_stop[] = "stop";
-static const char __pyx_k_szie[] = "szie";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_ASCII[] = "ASCII";
 static const char __pyx_k_Point[] = "Point";
@@ -1730,7 +1729,6 @@ static PyObject *__pyx_kp_s_strided_and_indirect;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_struct;
 static PyObject *__pyx_n_s_sz;
-static PyObject *__pyx_n_s_szie;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_kp_s_unable_to_allocate_array_data;
 static PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
@@ -2251,13 +2249,13 @@ static PyObject *__pyx_pf_6sample_6avg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx
   /* "sample.pyx":18
  *         double result
  * 
- *     sz = a.szie             # <<<<<<<<<<<<<<
+ *     sz = a.size             # <<<<<<<<<<<<<<
  *     with nogil:
  *         result = csample.avg(<double *> &a[0], sz)
  */
   __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_a, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_szie); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 18, __pyx_L1_error)
@@ -2266,7 +2264,7 @@ static PyObject *__pyx_pf_6sample_6avg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx
 
   /* "sample.pyx":19
  * 
- *     sz = a.szie
+ *     sz = a.size
  *     with nogil:             # <<<<<<<<<<<<<<
  *         result = csample.avg(<double *> &a[0], sz)
  *     return result
@@ -2280,7 +2278,7 @@ static PyObject *__pyx_pf_6sample_6avg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx
       /*try:*/ {
 
         /* "sample.pyx":20
- *     sz = a.szie
+ *     sz = a.size
  *     with nogil:
  *         result = csample.avg(<double *> &a[0], sz)             # <<<<<<<<<<<<<<
  *     return result
@@ -2301,7 +2299,7 @@ static PyObject *__pyx_pf_6sample_6avg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx
 
       /* "sample.pyx":19
  * 
- *     sz = a.szie
+ *     sz = a.size
  *     with nogil:             # <<<<<<<<<<<<<<
  *         result = csample.avg(<double *> &a[0], sz)
  *     return result
@@ -16316,7 +16314,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_struct, __pyx_k_struct, sizeof(__pyx_k_struct), 0, 0, 1, 1},
   {&__pyx_n_s_sz, __pyx_k_sz, sizeof(__pyx_k_sz), 0, 0, 1, 1},
-  {&__pyx_n_s_szie, __pyx_k_szie, sizeof(__pyx_k_szie), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_kp_s_unable_to_allocate_array_data, __pyx_k_unable_to_allocate_array_data, sizeof(__pyx_k_unable_to_allocate_array_data), 0, 0, 1, 0},
   {&__pyx_kp_s_unable_to_allocate_shape_and_str, __pyx_k_unable_to_allocate_shape_and_str, sizeof(__pyx_k_unable_to_allocate_shape_and_str), 0, 0, 1, 0},

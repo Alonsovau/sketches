@@ -15,7 +15,7 @@ def avg(double[:] a):
         int sz
         double result
 
-    sz = a.szie
+    sz = a.size
     with nogil:
         result = csample.avg(<double *> &a[0], sz)
     return result
