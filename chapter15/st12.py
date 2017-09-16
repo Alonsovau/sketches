@@ -1,6 +1,6 @@
 # 将函数指针转换为可调用对象
 import ctypes
-from llvm
+
 
 lib = ctypes.cdll.LoadLibrary(None)
 addr = ctypes.cast(lib.sin, ctypes.c_void_p).value
