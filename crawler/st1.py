@@ -13,3 +13,5 @@ with open('superHero.xml') as f:
     print(x)
     x = Selector(text=source).css('[lang=en]').extract()
     print(x)
+    x = Selector(text=source).xpath('/html/body/superhero/class[2]').re('>.*?<')
+    print(x)
